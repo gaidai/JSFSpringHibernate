@@ -19,7 +19,7 @@ public class FriendServiceImpl implements FriendService {
 
 	private FriendDAO friendDAO;
 	 
-    public void setFriendDAO(FriendDAO personDAO) {
+    public void setFriendDAO(FriendDAO friendDAO) {
         this.friendDAO = friendDAO;
     }
  

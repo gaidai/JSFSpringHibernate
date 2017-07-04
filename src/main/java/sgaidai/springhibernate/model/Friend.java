@@ -4,70 +4,90 @@ import java.io.Serializable;
 import javax.faces.bean.ManagedBean;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+// index.xhtml
 
 @Entity
-@Table(name="mobiller")
+@Table(name="Friends")
 @ManagedBean(name="friend")
+
 public class Friend implements Serializable {
-    
-    
-    
-    @Column(name="fname")
-    private String fname;
-    
-    @Column(name="name")
-    private String name;
-    
     @Id
-    @Column(name="mobil")
-    private String mobile;
+    @Column(name="id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int id;
     
-    @Column(name="date")
-    private String date;
+    @Column(name="firstname")
+    private String firstname;
+    
+    @Column(name="secondname")
+    private String secondname;
+    
+    
+    @Column(name="phone")
+    private int phone;
+    
+    @Column(name="description")
+    private String desc;
  
-    public Friend (int numb, String fname, String name, String mobile, String date) {
-        this.fname = fname;
-        this.name = name;
-        this.mobile = mobile;
-        this.date = date;
-    }
+   
     public Friend (){
     }
 
-    
-
-    public void setName(String name) {
-        this.name = name;
-    }
-    public void setFname(String fname) {
-        this.fname = fname;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-    public void setDate(String date) {
-        this.date = date;
+    public Friend(int id, String firstname, String secondname, int phone, String desc) {
+        this.id = id;
+        this.firstname = firstname;
+        this.secondname = secondname;
+        this.phone = phone;
+        this.desc = desc;
     }
     
-
-    public String getFname() {
-        return fname;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getMobile() {
-        return mobile;
-    }
     
-    public String getDate() {
-        return date;
+    
+     public String getDesc() {
+        return desc;
     }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getSecondname() {
+        return secondname;
+    }
+
+    public void setSecondname(String secondname) {
+        this.secondname = secondname;
+    }
+
+    public int getPhone() {
+        return phone;
+    }
+
+    public void setPhone(int phone) {
+        this.phone = phone;
+    }
+
+    
+   
 }

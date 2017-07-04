@@ -4,10 +4,9 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:c="http://java.sun.com/jsp/jstl/core">
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-	<title>JSF Spring Hibernate Integration</title>
+	<title> Friend Book </title>
 	<style type="text/css">
 .tg {
 	border-collapse: collapse;
@@ -48,22 +47,32 @@
 </style>
 </h:head>
 <h:body>
-	<h1>Add a Person</h1>
+	<h1>Add a Friend</h1>
 	<h:form>
 		<table>
 			<tr>
 				<td><label>Name</label></td>
-				<td><h:inputText id="name" value="#{person.name}"></h:inputText>
+				<td><h:inputText id="name" value="#{friend.firstname}"></h:inputText>
 				</td>
 			</tr>
 			<tr>
-				<td><label>Country</label></td>
-				<td><h:inputText id="country" value="#{person.country}"></h:inputText>
+				<td><label>Second name</label></td>
+				<td><h:inputText id="fname" value="#{friend.secondname}"></h:inputText>
+				</td>
+			</tr>
+                        <tr>
+				<td><label>Phone number</label></td>
+				<td><h:inputText id="phone" value="#{friend.phone}"></h:inputText>
+				</td>
+			</tr>
+			<tr>
+				<td><label>Description</label></td>
+				<td><h:inputText id="description" value="#{friend.desc}"></h:inputText>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2"><h:commandButton
-						action="#{personService.addPerson(person)}" value="Add Person"></h:commandButton>
+						action="#{friendService.addFriend(friend)}" value="Add Friend"></h:commandButton>
 				</td>
 			</tr>
 
@@ -72,24 +81,28 @@
 	</h:form>
 
 	<br />
-	<h3>Persons List</h3>
+	<h3>Friends List</h3>
 
-	<c:if test="${!empty personService.listPersons()}">
-		<table class="tg">
-			<tr>
-				<th width="80">Person ID</th>
-				<th width="120">Person Name</th>
-				<th width="120">Person Country</th>
-			</tr>
-			<ui:repeat value="${personService.listPersons()}" var="person">
-				<tr>
-					<td>${person.id}</td>
-					<td>${person.name}</td>
-					<td>${person.country}</td>
-				</tr>
-			</ui:repeat>
-		</table>
-	</c:if>
+
+        <table class="tg">
+                <tr>
+                        <th width="80"> ID</th>
+                        <th width="120">Name</th>
+                        <th width="120"> Family Name</th>
+                        <th width="120"> Phone</th>
+                        <th width="120">Description</th>
+                </tr>
+                <ui:repeat value="${friendService.listFriends()}" var="friend">
+                        <tr>
+                                <td>${friend.id}</td>
+                                <td>${friend.firstname}</td>
+                                <td>${friend.secondname}</td>
+                                <td>${friend.phone}</td>
+                                <td>${friend.desc}</td>
+                        </tr>
+                </ui:repeat>
+        </table>
+	
 
 </h:body>
 </html>
