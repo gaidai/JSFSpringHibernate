@@ -64,11 +64,13 @@
         <b:row >
             <b:column  col-lg="4"  >
                 <h:form>
+                    
+                    
                     <p:inputText  value="#{friend.firstname}" label="name" />
                     <p:inputText id="mydb4id"  value="#{friend.secondname}" label="name" />
                     <p:inputText id="mybid2" value="#{friend.phone}" label="name" />
                     <p:inputText id="my5bid"  value="#{friend.desc}" label="name" />
-                           
+                    <br/>       
                     <h:commandButton action="#{friendService.addFriend(friend)}" value="Add Friend"></h:commandButton>
 
                     
@@ -76,42 +78,25 @@
                
             </b:column>
             <b:column  span="2" col-lg="6"  >
-                
+             <h:form>
+            <b:dataTable value="#{friendService.listFriends()}" var="f" >
+                <b:dataTableColumn value="#{f.id}" />
+                <b:dataTableColumn value="#{f.firstname}" />
+                <b:dataTableColumn value="#{f.secondname}" />
+                <b:dataTableColumn value="#{f.phone}" />
+                <b:dataTableColumn label="Description"><h:outputText value="#{f.desc}"/>
+                </b:dataTableColumn>
+                <b:dataTableColumn label="*">
+                    <h:commandLink action="#{friendService.deleteFriend(f)}"><i class="fa  fa-trash fa-lg " /></h:commandLink>
+               </b:dataTableColumn>
+            </b:dataTable>
+        </h:form>   
                
-            <h:form>       
-                 <table class="tg">
-                    <tr>
-                            <th width="80"> ID</th>
-                            <th width="120">Name</th>
-                            <th width="120"> Family Name</th>
-                            <th width="120"> Phone</th>
-                            <th width="120">Description</th>
-                            <th width="60">Delete</th>
-
-                    </tr>
-                    <ui:repeat value="${friendService.listFriends()}" var="friend">
-                            <tr>
-                                    <td>${friend.id}</td>
-                                    <td>${friend.firstname}</td>
-                                    <td>${friend.secondname}</td>
-                                    <td>${friend.phone}</td>
-                                    <td>${friend.desc}</td>
-                                    <td> <h:commandLink  action="#{friendService.deleteFriend(friend)}" >
-            <i class="fa  fa-trash " /> </h:commandLink>   </td>
-                            </tr>
-                    </ui:repeat>
-                </table>
-                
-            </h:form>      
+           
             </b:column>
         </b:row>
-    
-    
-        <i class="fa fa-motorcycle" aria-hidden="true"></i>
-    
-         <button type="submit" class="btn btn-warning">
-            <i class="fa fa-motorcycle" aria-hidden="true"></i></button>
-         
+        
+                
     </b:container>
     <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
 </h:body>

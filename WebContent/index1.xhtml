@@ -81,52 +81,73 @@
                         </tr>
                 </ui:repeat>
         </table>
-        <h:dataTable value="${friendService.listFriends()}" var="o" >
+        <h:form>
+            <h:dataTable value="${friendService.listFriends()}" var="o" >
 
-            <h:column>
+                <h:column>
 
-                <f:facet name="header">id</f:facet>
-                #{o.id}
+                    <f:facet name="header">id</f:facet>
+                    #{o.id}
 
-            </h:column>
+                </h:column>
 
-            <h:column>
+                <h:column>
 
-                <f:facet name="header">firstname</f:facet>
-                #{o.firstname}
+                    <f:facet name="header">firstname</f:facet>
+                    #{o.firstname}
 
-            </h:column>
+                </h:column>
 
-            <h:column>
+                <h:column>
 
-                <f:facet name="header">secondname</f:facet>
-                #{o.secondname}
+                    <f:facet name="header">secondname</f:facet>
+                    #{o.secondname}
 
-            </h:column>
-            <h:column>
+                </h:column>
+                <h:column>
 
-                <f:facet name="header">phone</f:facet>
-                #{o.phone}
+                    <f:facet name="header">phone</f:facet>
+                    #{o.phone}
 
-            </h:column>
-            <h:column>
+                </h:column>
+                <h:column>
 
-                <f:facet name="header">desc</f:facet>
-                #{o.desc}
+                    <f:facet name="header">desc</f:facet>
+                    #{o.desc}
 
-            </h:column>
+                </h:column>
 
 
-            <h:column>
+                <h:column>
 
-                <f:facet name="header">delete</f:facet>
+                    <f:facet name="header">delete</f:facet>
 
-                <h:commandLink value="Delete" action="#{friendService.deleteFriend(o)}" />
+                    <h:commandLink value="Delete" action="#{friendService.deleteFriend(o)}" />
 
-            </h:column>
+                </h:column>
+                
+                
 
-        </h:dataTable>
-	
+            </h:dataTable>
+	</h:form>
+        
+        <h:form>
+            <b:dataTable value="#{friendService.listFriends()}" var="f" >
+               
+                <b:dataTableColumn value="#{f.firstname}" />
+                <b:dataTableColumn value="#{f.secondname}" />
+                <b:dataTableColumn value="#{f.phone}" />
+                <b:dataTableColumn label="Desc">
+                   
+                    <h:outputText value="#{f.desc}"/>
+                </b:dataTableColumn>
+                <b:dataTableColumn>
+                    <b:commandButton value="edit" icon="edit" ajax="true" update="@(.editableCarTable)"
+                        onclick="ajax:friendService.editFriend(f)" >
+                    </b:commandButton>
+               </b:dataTableColumn>
+            </b:dataTable>
+        </h:form>
 
 </h:body>
 </html>

@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
@@ -14,8 +13,8 @@ import sgaidai.springhibernate.model.Friend;
 
 @Repository
 public class FriendDAOImpl implements FriendDAO{
-	
-	private static final Logger logger = LoggerFactory.getLogger(FriendDAOImpl.class);
+    
+    private static final Logger logger = LoggerFactory.getLogger(FriendDAOImpl.class);
 	
         
     private SessionFactory sessionFactory;
@@ -40,6 +39,17 @@ public class FriendDAOImpl implements FriendDAO{
         logger.info("Friend deleted successfully, Friend Details="+f);
        
     }
+    
+    
+    @Override
+    public void editFriend(Friend f) {
+        Session session = this.sessionFactory.getCurrentSession();
+        
+        session.update(f);
+        logger.info("Friend edited successfully, Friend Details="+f);
+       
+    }
+    
  
     @SuppressWarnings("unchecked")
     @Override

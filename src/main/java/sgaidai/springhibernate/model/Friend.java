@@ -35,7 +35,7 @@ public class Friend implements Serializable {
     @Column(name="description")
     private String desc;
  
-   
+    
     public Friend (){
     }
 
@@ -47,7 +47,10 @@ public class Friend implements Serializable {
         this.desc = desc;
     }
     
+      
+
     
+        
     
      public String getDesc() {
         return desc;
