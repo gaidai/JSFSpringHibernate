@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+        xmlns:b="http://bootsfaces.net/ui">
+<h:head>
+	<title> Friend Book </title>
+	<style type="text/css">
+.tg {
+	border-collapse: collapse;
+	border-spacing: 0;
+	border-color: #ccc;
+}
+.tg td {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #fff;
+}
+.tg th {
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	font-weight: normal;
+	padding: 10px 5px;
+	border-style: solid;
+	border-width: 1px;
+	overflow: hidden;
+	word-break: normal;
+	border-color: #ccc;
+	color: #333;
+	background-color: #f0f0f0;
+}
+.tg .tg-4eph {
+	background-color: #f9f9f9
+}
+</style>
+</h:head>
+<h:body>
+	<h1>Add a Friend</h1>
+	<h:form>
+                    <b:inputText id="mydbid"  value="#{friend.firstname}" label="name" />
+                    <b:inputText id="mydb4id"  value="#{friend.secondname}" label="name" />
+                    <b:inputText id="mybid2" value="#{friend.phone}" label="name" > <f:converter converterId="javax.faces.Integer"/></b:inputText>
+                    <b:inputText id="my5bid"  value="#{friend.desc}" label="name" />
+                           
+                    <h:commandButton action="#{friendService.addFriend(friend)}" value="Add Friend"></h:commandButton>
+
+                    
+        </h:form>
+
+	<br />
+	<h3>Friends List</h3>
+
+
+        <table class="tg">
+                <tr>
+                        <th width="80"> ID</th>
+                        <th width="120">Name</th>
+                        <th width="120"> Family Name</th>
+                        <th width="120"> Phone</th>
+                        <th width="120">Description</th>
+                </tr>
+                <ui:repeat value="${friendService.listFriends()}" var="friend">
+                        <tr>
+                                <td>${friend.id}</td>
+                                <td>${friend.firstname}</td>
+                                <td>${friend.secondname}</td>
+                                <td>${friend.phone}</td>
+                                <td>${friend.desc}</td>
+                        </tr>
+                </ui:repeat>
+        </table>
+        <h:dataTable value="${friendService.listFriends()}" var="o" >
+
+            <h:column>
+
+                <f:facet name="header">id</f:facet>
+                #{o.id}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">firstname</f:facet>
+                #{o.firstname}
+
+            </h:column>
+
+            <h:column>
+
+                <f:facet name="header">secondname</f:facet>
+                #{o.secondname}
+
+            </h:column>
+            <h:column>
+
+                <f:facet name="header">phone</f:facet>
+                #{o.phone}
+
+            </h:column>
+            <h:column>
+
+                <f:facet name="header">desc</f:facet>
+                #{o.desc}
+
+            </h:column>
+
+
+            <h:column>
+
+                <f:facet name="header">delete</f:facet>
+
+                <h:commandLink value="Delete" action="#{friendService.deleteFriend(o)}" />
+
+            </h:column>
+
+        </h:dataTable>
+	
+
+</h:body>
+</html>

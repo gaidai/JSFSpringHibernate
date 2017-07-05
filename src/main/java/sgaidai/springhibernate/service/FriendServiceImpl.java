@@ -28,6 +28,12 @@ public class FriendServiceImpl implements FriendService {
     public void addFriend(Friend f) {
         this.friendDAO.addFriend(f);
     }
+    
+    @Override
+    @Transactional
+    public void deleteFriend(Friend f) {
+        this.friendDAO.deleteFriend(f);
+    }
  
     @Override
     @Transactional
