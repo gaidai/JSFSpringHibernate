@@ -54,17 +54,17 @@
                     
                 </h:form>
                 <b:row >
-                    
+                    <br/> 
                     <p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar">
                         <h:outputText value="You can add new contact to DB or delete it!" style="font-size:36px; text-align:center; " />                       
                     </p:notificationBar>
 
                     <p:commandButton value="Show" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/>
                     <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
-
-
                 </b:row>
+                
             </b:column>
+            
             <b:column  span="1" col-lg="7"  >
                 <h:form>
                     <b:dataTable value="#{friendService.listFriends()}" var="f" >
@@ -84,7 +84,25 @@
             </b:column>
         </b:row>
         
+        <b:row>
+            <p:lightBox styleClass="imagebox" id="lighbox1">  
+                <h:outputLink value="http://www.stockvault.net/blog/wp-content/uploads/2012/07/colorfulnature-12.jpg" title="Nature 1">  
+                    *1
+                </h:outputLink>
                 
+                <h:outputLink value="http://ndl.mgccw.com/mu3/000/685/888/sss/b23a12b470de4532aeae3d80f5ccb715_small.png" title="Nature 2">  
+                  * 2
+                </h:outputLink>
+
+                <h:outputLink value="http://rcysl.com/wp-content/uploads/2016/12/4K-Ultra-Cool-Nature-Pictures.jpg" title="Nature 3">  
+                   * 3
+                </h:outputLink>
+
+                <h:outputLink value="http://ndl.mgccw.com/mu3/000/685/888/sss/c53ae1d87b804a7d8565f243fdaba8bb_small.png" title="Nature 4">  
+                   * 4
+                </h:outputLink>
+            </p:lightBox>
+        </b:row>       
     </b:container>
     <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
 </h:body>
