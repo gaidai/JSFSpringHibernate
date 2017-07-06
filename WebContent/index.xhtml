@@ -11,86 +11,74 @@
 <h:head>
 	<title> Friend Book </title>
 	<style type="text/css">
-.tg {
-	border-collapse: collapse;
-	border-spacing: 0;
-	border-color: #ccc;
-        border-radius: 5px;
-}
 
-.tg td {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	padding: 10px 5px;
-	border-style: solid;
-	border-width: 1px;
-        overflow: hidden;
-	word-break: normal;
-	border-color: #ccc;
-	color: #333;
-	background-color: #fff;
-}
-
-.tg th {
-	font-family: Arial, sans-serif;
-	font-size: 14px;
-	font-weight: normal;
-	padding: 10px 5px;
-	border-style: solid;
-	border-width: 2px;
-	overflow: hidden;
-	word-break: normal;
-	border-color: #ccc;
-	color: #333;
-	background-color: #f0f0f0;
-}
-
-.tg .tg-4eph {
-	background-color: #f9f9f9
-}
 </style>
 </h:head>
 <h:body>
     <b:container >
-        <b:row  >
-            
-            <b:column offset="4" col-lg="4" style="primary" ><h1>Add a Friend</h1></b:column>
-            
-        </b:row>
+        
 	
 	<br/>
         <b:row><b:column offset="5" span="5" col-lg="2" style="color:blueviolet" ><h3>Friends List</h3></b:column></b:row>
-
+        
         <b:row >
             <b:column  col-lg="4"  >
+                <h1>Add a Friend</h1>
+                
                 <h:form>
                     
+                    <b:inputText value="#{friend.firstname}" label="First name" >
+                        <f:facet name="prepend">
+                            <i class="fa  fa-pencil fa-lg " />
+                         </f:facet>                       
+                    </b:inputText>
+                    <b:inputText value="#{friend.secondname}" label="Second name" >
+                        <f:facet name="prepend">
+                            <i class="fa  fa-pencil fa-lg " />
+                         </f:facet>                      
+                    </b:inputText>
+                    <b:inputText value="#{friend.phone}" label="Phone" >
+                        <f:facet name="prepend">
+                            <i class="fa  fa-pencil fa-lg " />
+                         </f:facet>                        
+                    </b:inputText>
+                    <b:inputText value="#{friend.desc}" label="Description" >
+                        <f:facet name="prepend">
+                            <i class="fa  fa-pencil fa-lg " />
+                        </f:facet>                        
+                    </b:inputText>
                     
-                    <p:inputText  value="#{friend.firstname}" label="name" />
-                    <p:inputText id="mydb4id"  value="#{friend.secondname}" label="name" />
-                    <p:inputText id="mybid2" value="#{friend.phone}" label="name" />
-                    <p:inputText id="my5bid"  value="#{friend.desc}" label="name" />
                     <br/>       
-                    <h:commandButton action="#{friendService.addFriend(friend)}" value="Add Friend"></h:commandButton>
-
+                    <h:commandButton action="#{friendService.addFriend(friend)}" value="Add Friend" class="btn btn-success"></h:commandButton>
+                    
                     
                 </h:form>
-               
+                <b:row >
+                    
+                    <p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar">
+                        <h:outputText value="You can add new contact to DB or delete it!" style="font-size:36px; text-align:center; " />                       
+                    </p:notificationBar>
+
+                    <p:commandButton value="Show" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/>
+                    <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
+
+
+                </b:row>
             </b:column>
-            <b:column  span="2" col-lg="6"  >
-             <h:form>
-            <b:dataTable value="#{friendService.listFriends()}" var="f" >
-                <b:dataTableColumn value="#{f.id}" />
-                <b:dataTableColumn value="#{f.firstname}" />
-                <b:dataTableColumn value="#{f.secondname}" />
-                <b:dataTableColumn value="#{f.phone}" />
-                <b:dataTableColumn label="Description"><h:outputText value="#{f.desc}"/>
-                </b:dataTableColumn>
-                <b:dataTableColumn label="*">
-                    <h:commandLink action="#{friendService.deleteFriend(f)}"><i class="fa  fa-trash fa-lg " /></h:commandLink>
-               </b:dataTableColumn>
-            </b:dataTable>
-        </h:form>   
+            <b:column  span="1" col-lg="7"  >
+                <h:form>
+                    <b:dataTable value="#{friendService.listFriends()}" var="f" >
+                        <b:dataTableColumn value="#{f.id}" label="ID" />
+                        <b:dataTableColumn value="#{f.firstname}" label="First name" />
+                        <b:dataTableColumn value="#{f.secondname}" label="Second name"/>
+                        <b:dataTableColumn value="#{f.phone}" />
+                        <b:dataTableColumn label="Description"><h:outputText value="#{f.desc}"/>
+                        </b:dataTableColumn>
+                        <b:dataTableColumn label="*">
+                            <h:commandLink action="#{friendService.deleteFriend(f)}"><i class="fa  fa-trash fa-lg " /></h:commandLink>
+                       </b:dataTableColumn>
+                    </b:dataTable>
+                </h:form>   
                
            
             </b:column>
