@@ -9,88 +9,47 @@ import javax.persistence.GenerationType;
 
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
+     
 // index.xhtml
-
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Entity
 @Table(name="Friends")
 @ManagedBean(name="friend")
-
 public class Friend implements Serializable {
+    
+    @Getter
+    @Setter
     @Id
     @Column(name="id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private int id;
     
+    @Getter
+    @Setter
     @Column(name="firstname")
     private String firstname;
     
+    @Getter
+    @Setter
     @Column(name="secondname")
     private String secondname;
     
-    
+    @Getter
+    @Setter
     @Column(name="phone")
     private int phone;
     
+    @Getter
+    @Setter
     @Column(name="description")
     private String desc;
  
-    
-    public Friend (){
-    }
-
-    public Friend(int id, String firstname, String secondname, int phone, String desc) {
-        this.id = id;
-        this.firstname = firstname;
-        this.secondname = secondname;
-        this.phone = phone;
-        this.desc = desc;
-    }
-    
-      
-
-    
-        
-    
-     public String getDesc() {
-        return desc;
-    }
-
-    public void setDesc(String desc) {
-        this.desc = desc;
-    }
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getSecondname() {
-        return secondname;
-    }
-
-    public void setSecondname(String secondname) {
-        this.secondname = secondname;
-    }
-
-    public int getPhone() {
-        return phone;
-    }
-
-    public void setPhone(int phone) {
-        this.phone = phone;
-    }
-
-    
-   
-}
+   }

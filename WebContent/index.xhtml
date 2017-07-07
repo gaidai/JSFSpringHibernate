@@ -1,109 +1,111 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui"
-        xmlns:b="http://bootsfaces.net/ui">
-<h:head>
-	<title> Friend Book </title>
-	<style type="text/css">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:b="http://bootsfaces.net/ui">
+    <h:head>
+        <title> Friend Book </title>
+        <style type="text/css">
 
-</style>
-</h:head>
-<h:body>
-    <b:container >
-        
-	
-	<br/>
-        <b:row><b:column offset="5" span="5" col-lg="2" style="color:blueviolet" ><h3>Friends List</h3></b:column></b:row>
-        
-        <b:row >
-            <b:column  col-lg="4"  >
-                <h1>Add a Friend</h1>
-                
-                <h:form>
-                    
-                    <b:inputText value="#{friend.firstname}" label="First name" >
-                        <f:facet name="prepend">
-                            <i class="fa  fa-pencil fa-lg " />
-                         </f:facet>                       
-                    </b:inputText>
-                    <b:inputText value="#{friend.secondname}" label="Second name" >
-                        <f:facet name="prepend">
-                            <i class="fa  fa-pencil fa-lg " />
-                         </f:facet>                      
-                    </b:inputText>
-                    <b:inputText value="#{friend.phone}" label="Phone" >
-                        <f:facet name="prepend">
-                            <i class="fa  fa-pencil fa-lg " />
-                         </f:facet>                        
-                    </b:inputText>
-                    <b:inputText value="#{friend.desc}" label="Description" >
-                        <f:facet name="prepend">
-                            <i class="fa  fa-pencil fa-lg " />
-                        </f:facet>                        
-                    </b:inputText>
-                    
-                    <br/>       
-                    <h:commandButton action="#{friendService.addFriend(friend)}" value="Add Friend" class="btn btn-success"></h:commandButton>
-                    
-                    
-                </h:form>
-                <b:row >
-                    <br/> 
-                    <p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar">
-                        <h:outputText value="You can add new contact to DB or delete it!" style="font-size:36px; text-align:center; " />                       
-                    </p:notificationBar>
+        </style>
+    </h:head>
+    <h:body>
+        <b:container >
 
-                    <p:commandButton value="Show" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/>
-                    <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
-                </b:row>
-                
-            </b:column>
-            
-            <b:column  span="1" col-lg="7"  >
-                <h:form>
-                    <b:dataTable value="#{friendService.listFriends()}" var="f" >
-                        <b:dataTableColumn value="#{f.id}" label="ID" />
-                        <b:dataTableColumn value="#{f.firstname}" label="First name" />
-                        <b:dataTableColumn value="#{f.secondname}" label="Second name"/>
-                        <b:dataTableColumn value="#{f.phone}" />
-                        <b:dataTableColumn label="Description"><h:outputText value="#{f.desc}"/>
-                        </b:dataTableColumn>
-                        <b:dataTableColumn label="*">
-                            <h:commandLink action="#{friendService.deleteFriend(f)}"><i class="fa  fa-trash fa-lg " /></h:commandLink>
-                       </b:dataTableColumn>
-                    </b:dataTable>
-                </h:form>   
-               
-           
-            </b:column>
-        </b:row>
-        
-        <b:row>
-            <p:lightBox styleClass="imagebox" id="lighbox1">  
-                <h:outputLink value="http://www.stockvault.net/blog/wp-content/uploads/2012/07/colorfulnature-12.jpg" title="Nature 1">  
-                    *1
-                </h:outputLink>
-                
-                <h:outputLink value="http://ndl.mgccw.com/mu3/000/685/888/sss/b23a12b470de4532aeae3d80f5ccb715_small.png" title="Nature 2">  
-                  * 2
-                </h:outputLink>
 
-                <h:outputLink value="http://rcysl.com/wp-content/uploads/2016/12/4K-Ultra-Cool-Nature-Pictures.jpg" title="Nature 3">  
-                   * 3
-                </h:outputLink>
+            <br/>
+            <b:row><b:column offset="5" span="5" col-lg="2" style="color:blueviolet" ><h3>Friends List</h3></b:column></b:row>
 
-                <h:outputLink value="http://ndl.mgccw.com/mu3/000/685/888/sss/c53ae1d87b804a7d8565f243fdaba8bb_small.png" title="Nature 4">  
-                   * 4
-                </h:outputLink>
-            </p:lightBox>
-        </b:row>       
-    </b:container>
-    <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
-</h:body>
+            <b:row >
+                <b:column  col-lg="4"  >
+                    <h1>Add a Friend</h1>
+
+                    <h:form>
+
+                        <b:inputText value="#{friend.firstname}" label="First name" >
+                            <f:facet name="prepend">
+                                <i class="fa  fa-pencil fa-lg " />
+                            </f:facet>                       
+                        </b:inputText>
+                        <b:inputText value="#{friend.secondname}" label="Second name" >
+                            <f:facet name="prepend">
+                                <i class="fa  fa-pencil fa-lg " />
+                            </f:facet>                      
+                        </b:inputText>
+                        <b:inputText value="#{friend.phone}" label="Phone" >
+                            <f:facet name="prepend">
+                                <i class="fa  fa-pencil fa-lg " />
+                            </f:facet>                        
+                        </b:inputText>
+                        <b:inputText value="#{friend.desc}" label="Description" >
+                            <f:facet name="prepend">
+                                <i class="fa  fa-pencil fa-lg " />
+                            </f:facet>                        
+                        </b:inputText>
+
+                        <br/>       
+                        <h:commandButton action="#{friendService.addFriend(friend)}" value="Add Friend" class="btn btn-success"></h:commandButton>
+
+
+                    </h:form>
+                    <b:row >
+                        <br/> 
+                        <p:notificationBar position="top" effect="slide" styleClass="top" widgetVar="bar">
+                            <h:outputText value="You can add new contact to DB or delete it!" style="font-size:36px; text-align:center; " />                       
+                        </p:notificationBar>
+
+                        <p:commandButton value="Show" onclick="PF('bar').show()" type="button" icon="ui-icon-arrow-1-s"/>
+                        <p:commandButton value="Hide" onclick="PF('bar').hide()" type="button" icon="ui-icon-arrow-1-n"/>
+                    </b:row>
+
+                </b:column>
+
+                <b:column  span="1" col-lg="7"  >
+                    <h:form>
+                        <b:dataTable value="#{friendService.listFriends()}" var="f" >
+                            <b:dataTableColumn value="#{f.id}" label="ID" />
+                            <b:dataTableColumn value="#{f.firstname}" label="First name" />
+                            <b:dataTableColumn value="#{f.secondname}" label="Second name"/>
+                            <b:dataTableColumn value="#{f.phone}" />
+                            <b:dataTableColumn label="Description"><h:outputText value="#{f.desc}"/>
+                            </b:dataTableColumn>
+                            <b:dataTableColumn label="*">
+                                <h:commandLink action="#{friendService.deleteFriend(f)}"><i class="fa  fa-trash fa-lg " /></h:commandLink>
+                            </b:dataTableColumn>
+                        </b:dataTable>
+                    </h:form>   
+
+
+                </b:column>
+            </b:row>
+
+            <b:row>
+                <p:lightBox styleClass="imagebox" id="lighbox1">  
+                    <h:outputLink value="http://www.stockvault.net/blog/wp-content/uploads/2012/07/colorfulnature-12.jpg" title="Nature 1">  
+                        *1
+                    </h:outputLink>
+
+                    <h:outputLink value="http://ndl.mgccw.com/mu3/000/685/888/sss/b23a12b470de4532aeae3d80f5ccb715_small.png" title="Nature 2">  
+                        * 2
+                    </h:outputLink>
+
+                    <h:outputLink value="http://rcysl.com/wp-content/uploads/2016/12/4K-Ultra-Cool-Nature-Pictures.jpg" title="Nature 3">  
+                        * 3
+                    </h:outputLink>
+
+                    <h:outputLink value="http://ndl.mgccw.com/mu3/000/685/888/sss/c53ae1d87b804a7d8565f243fdaba8bb_small.png" title="Nature 4">  
+                        * 4
+                    </h:outputLink>
+                </p:lightBox>
+            </b:row>       
+        </b:container>
+        <h:outputStylesheet library="webjars" name="font-awesome/4.7.0/css/font-awesome-jsf.css" />
+        <br />
+        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    </h:body>
 </html>
