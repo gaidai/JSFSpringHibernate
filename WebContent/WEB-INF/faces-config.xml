@@ -11,4 +11,10 @@
         </el-resolver>
     </application>
     
+    <managed-bean>
+        <managed-bean-name>loginController</managed-bean-name> 
+        <managed-bean-class>sgaidai.springhibernate.security.controller.LoginController</managed-bean-class>
+    
+        <managed-bean-scope>session</managed-bean-scope></managed-bean>
+    
 </faces-config>

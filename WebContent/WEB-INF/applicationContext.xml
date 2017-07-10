@@ -16,13 +16,12 @@
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-
+<jpa:repositories base-package ="org.ray.springdatajpa.dao.repositories"/>    
 
 	<beans:bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
 		destroy-method="close">
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<beans:property name="url"
-			value="jdbc:mysql://localhost:3306/testing" />
+		<beans:property name="url" value="jdbc:mysql://localhost:3306/testing" />
 		<beans:property name="username" value="sgaidai" />
 		<beans:property name="password" value="honda250" />
 	</beans:bean>
@@ -31,12 +30,8 @@
 	<beans:bean id="hibernate4AnnotatedSessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<beans:property name="dataSource" ref="dataSource" />
-		<beans:property name="annotatedClasses">
-			<beans:list>
-				<beans:value>sgaidai.springhibernate.model.Person</beans:value>
-                                <beans:value>sgaidai.springhibernate.model.Friend</beans:value>
-			</beans:list>
-		</beans:property>
+                <property name="packagesToScan" value="sgaidai.springhibernate.model" />
+		
 		<beans:property name="hibernateProperties">
 			<beans:props>
 				<beans:prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect

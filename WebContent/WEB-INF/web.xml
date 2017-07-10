@@ -15,18 +15,35 @@ http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd">
 	</listener-class>
   </listener>
   
+  
+    <!-- Spring Security -->
+    <filter>
+            <filter-name>springSecurityFilterChain</filter-name>
+            <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+            <filter-name>springSecurityFilterChain</filter-name>
+            <url-pattern>/*</url-pattern>
+            <dispatcher>FORWARD</dispatcher>
+    <dispatcher>REQUEST</dispatcher><!-- mandatory to allow the managed bean to forward the request to the filter -->
+    </filter-mapping>
+        
+        
     <welcome-file-list>
-        <welcome-file>index.jsf</welcome-file>
+        <welcome-file>View/UnSecured/register.xhtml</welcome-file>
     </welcome-file-list>
     <context-param>
         <param-name>javax.faces.PROJECT_STAGE</param-name>
         <param-value>Development</param-value>
     </context-param>
+    
     <servlet>
         <servlet-name>Faces Servlet</servlet-name>
         <servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
         <load-on-startup>1</load-on-startup>
     </servlet>
+    
+    
     <servlet-mapping>
 		<servlet-name>Faces Servlet</servlet-name>
 		<url-pattern>/faces/*</url-pattern>
