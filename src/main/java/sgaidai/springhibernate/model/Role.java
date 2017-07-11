@@ -1,80 +1,51 @@
 package sgaidai.springhibernate.model;
-// Generated May 31, 2017 3:23:15 PM by Hibernate Tools 4.3.1
 
 
 
+
+import javax.faces.bean.ManagedBean;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
-/**
- * @RRay
- */
-@Entity        
-@Table(name="role"
-    ,catalog="dbbusiness",uniqueConstraints = @UniqueConstraint(
-		columnNames = { "user_id", "role" })        
-)
+
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name="role")
+@ManagedBean(name="role")
 public class Role  implements java.io.Serializable {
 
-
-     private int roleId;     
-     private String role;
-     private User user;
-
-    public Role() {
-    }
-
-    public Role(int roleId, User user, String role) {
-       this.roleId = roleId;
-       this.user = user;
-       this.role = role;
-    }
-   
-     @Id 
+    @Getter
+    @Setter
+    @Id
+    @Column(name="role_id")
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    private int roleId; 
     
-    @Column(name="role_id", unique=true, nullable=false)
-    public int getRoleId() {
-        return this.roleId;
-    }
+    @Getter
+    @Setter
+    @Column(name="role") 
+    private String role;
     
-    public void setRoleId(int roleId) {
-        this.roleId = roleId;
-    }
-
-@ManyToOne(fetch=FetchType.EAGER)
-    @JoinColumn(name="user_id", nullable=false)
-    public User getUser() {
-        return this.user;
-    }
-    
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    
-    @Column(name="role", nullable=false, length=45)
-    public String getRole() {
-        return this.role;
-    }
-    
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-@Override
-    public String toString() {
-    return "Role is:-"
-    + "\n\t RoleId:- " + this.getRoleId()
-    + "\n\t UserId:- " + this.getUser().getUserId()
-    + "\n\t Role:- " + this.role;
-    }
-
+    @Getter
+    @Setter
+    @ManyToOne(cascade = {CascadeType.REFRESH}, fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 
 }
 
